@@ -764,7 +764,7 @@ dialog .cap{color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:.1e
 <script>
 (function(){
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const INTAKE_URL=''; // the Google Apps Script web app URL (…/exec) once deployed; see apps-script/SETUP.md in qualitide-intake
+const INTAKE_URL='https://script.google.com/macros/s/AKfycbxiJsnb9uF4_kGRBmY8Q3WGX1IOE0q9pBerkqYrNnfBkmJ8GLpHxp3TBNApifr_XTln/exec'; // the Google Apps Script web app URL (…/exec) once deployed; see apps-script/SETUP.md in qualitide-intake
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2600);};
 const pad=n=>String(Math.floor(n)).padStart(2,'0');
