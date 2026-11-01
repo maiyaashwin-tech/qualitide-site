@@ -78,6 +78,31 @@ dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:1r
 dialog .bar span{font:500 .875rem var(--fm);color:var(--dim)}
 dialog button{font:600 .9375rem var(--fb);color:var(--fg);background:transparent;border:1px solid rgba(247,238,227,.3);padding:.55rem 1rem;cursor:pointer}
 dialog button:hover{background:var(--red);border-color:var(--red)}
+.tabs{display:flex;gap:clamp(1.2rem,3vw,2.5rem);border-bottom:1px solid var(--line);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+.tabs button{font:900 clamp(1.6rem,3.2vw,2.8rem)/1 var(--fd);text-transform:uppercase;color:var(--dim);background:transparent;border:0;border-bottom:3px solid transparent;padding:0 0 .7rem;margin-bottom:-1px;cursor:pointer;transition:color .3s,border-color .3s}
+.tabs button:hover{color:var(--fg)}.tabs button.on{color:var(--fg);border-color:var(--red)}
+.tabs small{font:500 .8125rem var(--fm);color:var(--gold);margin-left:.5rem;vertical-align:super;letter-spacing:.04em}
+[data-pane][hidden]{display:none!important}
+.mhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem 2rem;margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+.mhead p{color:var(--dim);max-width:56ch;font-size:clamp(1rem,1.4vw,1.15rem)}
+.mm-watch{display:inline-flex;align-items:center;gap:.7rem;font:600 .875rem var(--fm);letter-spacing:.06em;text-transform:uppercase;color:var(--fg);background:transparent;border:1px solid rgba(247,238,227,.3);padding:.9rem 1.2rem;cursor:pointer;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transition:background .4s var(--ease),border-color .4s var(--ease)}
+.mm-watch:hover{background:var(--red);border-color:var(--red)}
+.mm-watch i{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.cal{background:var(--bg2);border:1px solid var(--line);padding:clamp(1rem,2.5vw,2rem);margin-bottom:clamp(2rem,4vw,3rem);clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px)}
+.cal-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.5rem 1rem;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:clamp(1.2rem,2.4vw,2rem)}
+.cal-mo{font:900 clamp(2.2rem,4.4vw,3.6rem)/.9 var(--fd);text-transform:uppercase;color:var(--red)}.cal-mo span{color:var(--fg)}
+.cal-top .m{font:500 .8125rem var(--fm);color:var(--dim);letter-spacing:.02em}
+.cal-row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2.2vw,1.8rem);padding:8px}
+.wk{display:grid;gap:.9rem;align-content:start;min-width:0;cursor:pointer}
+.wk-day{display:flex;justify-content:space-between;font:500 .8125rem var(--fm);color:var(--dim)}.wk-day b{color:var(--gold);font-weight:500}
+.phone{position:relative;aspect-ratio:9/16;border-radius:clamp(16px,2vw,26px);overflow:hidden;background:#000;box-shadow:0 0 0 6px #1B1114,0 0 0 7px var(--line),0 30px 60px -24px rgba(0,0,0,.8);transition:transform 1s var(--ease)}
+.phone img,.phone video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .5s var(--ease)}
+.phone video{opacity:0}.wk.playing .phone video{opacity:1}
+.phone .snd{position:absolute;left:50%;bottom:.9rem;transform:translateX(-50%);white-space:nowrap;font:500 .75rem var(--fm);letter-spacing:.06em;text-transform:uppercase;background:rgba(11,5,7,.72);border:1px solid rgba(247,238,227,.25);padding:.4rem .65rem;backdrop-filter:blur(6px);opacity:0;transition:opacity .4s var(--ease)}
+.wk:hover .phone{transform:translateY(-6px)}.wk:hover .snd,.wk:focus-visible .snd{opacity:1}
+.wk h3{font-size:clamp(1.6rem,2.2vw,2.2rem)}.wk p{margin:0;color:var(--dim);font-size:.9375rem;max-width:30ch}
+@media (max-width:759px){.cal-row{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:66%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-8px}.cal-row::-webkit-scrollbar{display:none}.wk{scroll-snap-align:start}.wk .snd{opacity:1}}
+dialog.tall{max-width:min(calc(80vh * 9 / 16),94vw)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <script data-goatcounter="https://qualitide.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -90,9 +115,40 @@ dialog button:hover{background:var(--red);border-color:var(--red)}
     <p>No templates and no two alike. Hover to preview, click to watch with sound. These are concept films for fictional products, made to show the range; the last one is our own.</p>
     <p class="pledge"><b>100%.</b> Every one of these films was made with maximum effort: built from a blank page, every frame pushed as far as it would go. Yours gets the same, and more: every new film has to beat these.</p>
   </header>
+  <div class="tabs" role="tablist" aria-label="What we make"><button type="button" role="tab" class="on" data-tab="launch" aria-selected="true">Launch films</button><button type="button" role="tab" data-tab="monthly" aria-selected="false">Monthly motion</button></div>
+  <div data-pane="launch">
   <div class="chips" role="group" aria-label="Filter by industry"><button type="button" class="on" data-f="all">All</button><button type="button" data-f="software">Software &amp; AI</button><button type="button" data-f="brands">Brands</button><button type="button" data-f="apps">Apps</button><button type="button" data-f="fintech">Fintech</button><button type="button" data-f="realestate">Real estate</button></div>
   <section class="grid" id="grid" aria-label="Films"></section>
-  <p class="note">Every product, brand and listing in these films is fictional, created by Qualitide to show the range. No client relationship is implied. Sample-film soundtracks: NoCopyrightSounds (NCS), with custom sound design on every film.</p>
+  </div>
+  <section data-pane="monthly" hidden aria-label="Monthly motion">
+    <div class="mhead"><p>Monthly motion is a new reel every week, all in one look, all made from your real product. Each month is one row. This one is Pebble, a savings app we invented to show it.</p><button type="button" class="mm-watch" data-film="pebble_month" data-name="Monthly motion" data-kind="A month in 35 s"><i></i>Watch the month · 35 s</button></div>
+    <div class="cal">
+      <div class="cal-top"><span class="cal-mo">November <span>· Pebble</span></span><span class="m">4 reels · $900 a month · Music licensed from Pixabay</span></div>
+      <div class="cal-row">
+        <article class="wk" data-film="pebble_w1" data-name="Pebble · Week 1" data-kind="Feature drop · 15 s" tabindex="0" role="button" aria-label="Play Pebble week 1, Feature drop, with sound">
+          <div class="wk-day"><span>Week 1</span><b>Tue 3</b></div>
+          <div class="phone"><img src="web/pebble_w1.jpg" alt="" loading="lazy"><video src="web/pebble_w1.mp4" muted loop playsinline preload="none"></video><span class="snd">▶ Sound on</span></div>
+          <h3>Feature drop</h3><p>Round-ups arrive. One coin, frozen mid-air in bullet time.</p>
+        </article>
+        <article class="wk" data-film="pebble_w2" data-name="Pebble · Week 2" data-kind="How-to · 15 s" tabindex="0" role="button" aria-label="Play Pebble week 2, How-to, with sound">
+          <div class="wk-day"><span>Week 2</span><b>Tue 10</b></div>
+          <div class="phone"><img src="web/pebble_w2.jpg" alt="" loading="lazy"><video src="web/pebble_w2.mp4" muted loop playsinline preload="none"></video><span class="snd">▶ Sound on</span></div>
+          <h3>How-to</h3><p>A goal in three taps. The desk lamp brightens with every one.</p>
+        </article>
+        <article class="wk" data-film="pebble_w3" data-name="Pebble · Week 3" data-kind="Milestone · 15 s" tabindex="0" role="button" aria-label="Play Pebble week 3, Milestone, with sound">
+          <div class="wk-day"><span>Week 3</span><b>Tue 17</b></div>
+          <div class="phone"><img src="web/pebble_w3.jpg" alt="" loading="lazy"><video src="web/pebble_w3.mp4" muted loop playsinline preload="none"></video><span class="snd">▶ Sound on</span></div>
+          <h3>Milestone</h3><p>The first $1,000. The whole city lights up with it.</p>
+        </article>
+        <article class="wk" data-film="pebble_w4" data-name="Pebble · Week 4" data-kind="Ad cut · 10 s" tabindex="0" role="button" aria-label="Play Pebble week 4, Ad cut, with sound">
+          <div class="wk-day"><span>Week 4</span><b>Tue 24</b></div>
+          <div class="phone"><img src="web/pebble_w4.jpg" alt="" loading="lazy"><video src="web/pebble_w4.mp4" muted loop playsinline preload="none"></video><span class="snd">▶ Sound on</span></div>
+          <h3>Ad cut</h3><p>The month, cut down to a 10-second ad for paid.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <p class="note">Every product, brand and listing in these films (Pebble included) is fictional, created by Qualitide to show the range. No client relationship is implied. Sample-film soundtracks: NoCopyrightSounds (NCS), with custom sound design on every film.</p>
   <div class="cta"><h3>Want one like this?</h3><a href="index.html#contact">Get a free storyboard</a></div>
 </main>
 <dialog id="lb" aria-label="Film"><video id="lbv" controls playsinline></video><div class="bar"><span id="lbcap"></span><button type="button" id="lbx">Close</button></div></dialog>
@@ -119,12 +175,23 @@ dialog button:hover{background:var(--red);border-color:var(--red)}
     el.dataset.ind = f.ind;
     const v = el.querySelector('video');
     if (!touch) { el.addEventListener('mouseenter', () => { v.preload = 'auto'; v.play().catch(() => {}); }); el.addEventListener('mouseleave', () => { v.pause(); }); }
-    const open = () => { const d = document.getElementById('lb'), lv = document.getElementById('lbv'); lv.src = `web/${f.id}.mp4`; document.getElementById('lbcap').textContent = `${f.name} · ${f.kind}`; d.showModal(); lv.play().catch(() => {}); };
+    const open = () => { const d = document.getElementById('lb'), lv = document.getElementById('lbv'); d.classList.remove('tall'); lv.src = `web/${f.id}.mp4`; document.getElementById('lbcap').textContent = `${f.name} · ${f.kind}`; d.showModal(); lv.play().catch(() => {}); };
     el.addEventListener('click', open); el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
     grid.appendChild(el);
   });
   document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.chips button').forEach(x => x.classList.toggle('on', x === b)); const f = b.dataset.f;
     grid.querySelectorAll('.film').forEach(el => { el.hidden = !(f === 'all' || el.dataset.ind === f || (f === 'all' && el.dataset.ind === 'studio')); }); }));
+
+  /* tabs: launch films / monthly motion (work.html#monthly opens the second) */
+  const tabsEl = document.querySelectorAll('[data-tab]'), panes = document.querySelectorAll('[data-pane]');
+  const show = k => { tabsEl.forEach(b => { b.classList.toggle('on', b.dataset.tab === k); b.setAttribute('aria-selected', b.dataset.tab === k); }); panes.forEach(p => p.hidden = p.dataset.pane !== k); document.querySelectorAll('.wk video').forEach(v => { if (k === 'monthly' && touch) { v.preload = 'auto'; v.play().then(() => v.closest('.wk').classList.add('playing')).catch(() => {}); } else if (k !== 'monthly') v.pause(); }); };
+  tabsEl.forEach(b => b.addEventListener('click', () => { show(b.dataset.tab); history.replaceState(null, '', b.dataset.tab === 'monthly' ? '#monthly' : location.pathname); }));
+  const openTall = el => { const d = document.getElementById('lb'), lv = document.getElementById('lbv'); d.classList.add('tall'); lv.src = `web/${el.dataset.film}.mp4`; document.getElementById('lbcap').textContent = `${el.dataset.name} · ${el.dataset.kind}`; d.showModal(); lv.play().catch(() => {}); };
+  document.querySelectorAll('.wk').forEach(el => { const v = el.querySelector('video');
+    if (!touch) { el.addEventListener('mouseenter', () => { v.preload = 'auto'; v.play().then(() => el.classList.add('playing')).catch(() => {}); }); el.addEventListener('mouseleave', () => { v.pause(); el.classList.remove('playing'); }); }
+    el.addEventListener('click', () => openTall(el)); el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openTall(el); } }); });
+  document.querySelectorAll('.mm-watch').forEach(b => b.addEventListener('click', () => openTall(b)));
+  if (location.hash === '#monthly') show('monthly');
   const d = document.getElementById('lb'), lv = document.getElementById('lbv'); const close = () => { lv.pause(); lv.removeAttribute('src'); lv.load(); d.close(); };
   document.getElementById('lbx').addEventListener('click', close); d.addEventListener('click', e => { if (e.target === d) close(); }); d.addEventListener('cancel', () => { lv.pause(); });
 })();
