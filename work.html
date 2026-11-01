@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qualitide Work</title>
+<meta name="description" content="Launch films and reels by Qualitide. Hover to preview, click to watch with sound.">
+<link rel="canonical" href="https://qualitidestudio.com/work.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qualitide · Our work">
+<meta property="og:description" content="Cinematic launch films and reels. Hover to preview, click to watch with sound.">
+<meta property="og:url" content="https://qualitidestudio.com/work.html">
+<meta property="og:image" content="https://qualitidestudio.com/web/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0507">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E0162B'/%3E%3Ccircle cx='31' cy='30' r='15' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Cpath d='M38 37l11 11' stroke='%23fff' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one page of films only. A top bar back to the site, a giant title, the studio film full width, then a two-column grid of launch films. Hover previews muted; click opens a lightbox with sound. */
+:root{
+  color-scheme:dark;
+  --bg:#0B0507; --bg2:#140A0E; --line:#2C1A20; --fg:#F7EEE3; --dim:#A08A8A;
+  --red:#E0162B; --red-ink:#2A0409; --gold:#F2C14E;
+  --fd:"Big Shoulders Display","Oswald",Impact,sans-serif; --fb:"Hanken Grotesk","Helvetica Neue",Arial,system-ui,sans-serif; --fm:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --gl:max(16px,env(safe-area-inset-left,0px)); --gr:max(16px,env(safe-area-inset-right,0px));
+}
+@media (min-width:900px){:root{--gl:max(56px,env(safe-area-inset-left,0px));--gr:max(56px,env(safe-area-inset-right,0px))}}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--fb);font-size:1.125rem;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--red);color:#fff}
+h1,h2,h3{font-family:var(--fd);font-weight:900;line-height:.86;margin:0;text-transform:uppercase;letter-spacing:-.005em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1500px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
+.top{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg) 60%,transparent);padding-block:calc(1rem + env(safe-area-inset-top,0px)) 1.5rem}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.brand{font-family:var(--fd);font-weight:900;font-size:1.6rem;text-transform:uppercase;text-decoration:none;letter-spacing:.02em}
+.back{font:600 1rem var(--fb);text-decoration:none;display:inline-flex;gap:.5rem;align-items:center;padding:.7rem 1.1rem;border:1px solid var(--line);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transition:background .4s var(--ease),border-color .4s var(--ease)}
+.back:hover{background:var(--red);border-color:var(--red)}
+header.hero{padding-block:clamp(2rem,6vw,5rem) clamp(2rem,5vw,4rem)}
+header.hero h1{font-size:clamp(4rem,16vw,16rem)}
+header.hero h1 span{color:var(--red)}
+header.hero p{color:var(--dim);max-width:54ch;margin:1.25rem 0 0;font-size:clamp(1rem,1.5vw,1.25rem)}
+.grid{display:grid;gap:clamp(1rem,2.5vw,2rem);padding-bottom:clamp(4rem,8vw,7rem)}
+@media (min-width:860px){.grid{grid-template-columns:1fr 1fr}.film.wide{grid-column:1/-1}}
+.film{display:grid;gap:.9rem;cursor:pointer}
+.screen{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px)}
+.screen img,.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s var(--ease),opacity .4s}
+.screen video{opacity:0}
+.film:hover .screen video,.film.playing .screen video{opacity:1}
+.film:hover .screen img,.film:hover .screen video{transform:scale(1.03)}
+.play{position:absolute;left:1rem;bottom:1rem;z-index:2;font:600 .8125rem var(--fm);letter-spacing:.06em;text-transform:uppercase;background:rgba(11,5,7,.75);border:1px solid rgba(247,238,227,.25);padding:.5rem .8rem;backdrop-filter:blur(6px)}
+.meta{display:grid;grid-template-columns:1fr auto;gap:.25rem 1rem;align-items:baseline}
+.meta h2{font-size:clamp(2rem,4vw,3.4rem)}
+.meta .kind{font:500 .8125rem var(--fm);color:var(--dim);text-align:right;letter-spacing:.04em}
+.meta p{grid-column:1/-1;margin:0;color:var(--dim);max-width:60ch;font-size:1rem}
+.film.wide .meta h2{color:var(--gold)}
+.pledge{color:#E8DCCF!important;border-left:2px solid var(--gold);padding-left:1rem}.pledge b{color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;padding-bottom:clamp(1.5rem,3vw,2.5rem)}
+.chips button{font:600 .9375rem var(--fb);color:var(--fg);background:transparent;border:1px solid var(--line);padding:.6rem 1rem;cursor:pointer;transition:background .3s,border-color .3s}
+.chips button:hover{border-color:var(--red)}.chips button.on{background:var(--red);border-color:var(--red);color:#fff}
+.spec{grid-column:1/-1;margin:.4rem 0 0;display:grid;gap:.35rem;border-top:1px solid var(--line);padding-top:.7rem}
+.spec div{display:grid;grid-template-columns:6.5rem 1fr;gap:.8rem;font-size:.9375rem}.spec dt{font:500 .75rem var(--fm);letter-spacing:.06em;text-transform:uppercase;color:var(--gold);padding-top:.15rem}.spec dd{margin:0;color:var(--dim)}
+.film[hidden]{display:none}
+.note{color:var(--dim);font-size:.9375rem;border-top:1px solid var(--line);padding-block:2rem 3rem}
+.cta{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;padding-block:2rem 4rem;border-top:1px solid var(--line)}
+.cta h3{font-size:clamp(2.2rem,6vw,5rem)}
+.cta a{font:700 1.0625rem var(--fb);text-transform:uppercase;letter-spacing:.03em;text-decoration:none;background:var(--red);color:#fff;padding:1.1rem 1.6rem;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);transition:background .4s var(--ease),color .4s var(--ease)}
+.cta a:hover{background:var(--gold);color:var(--red-ink)}
+dialog{border:0;padding:0;background:transparent;max-width:min(1400px,94vw);width:100%}
+dialog::backdrop{background:rgba(5,2,3,.92);backdrop-filter:blur(6px)}
+dialog video{width:100%;display:block;background:#000;max-height:80vh}
+dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.8rem;color:var(--fg)}
+dialog .bar span{font:500 .875rem var(--fm);color:var(--dim)}
+dialog button{font:600 .9375rem var(--fb);color:var(--fg);background:transparent;border:1px solid rgba(247,238,227,.3);padding:.55rem 1rem;cursor:pointer}
+dialog button:hover{background:var(--red);border-color:var(--red)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script data-goatcounter="https://qualitide.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="top"><div class="wrap"><a class="brand" href="index.html">Qualitide</a><a class="back" href="index.html">← Back to site</a></div></div>
+<main class="wrap">
+  <header class="hero">
+    <h1>Our <span>work</span></h1>
+    <p>No templates and no two alike. Hover to preview, click to watch with sound. These are concept films for fictional products, made to show the range; the last one is our own.</p>
+    <p class="pledge"><b>100%.</b> Every one of these films was made with maximum effort: built from a blank page, every frame pushed as far as it would go. Yours gets the same, and more: every new film has to beat these.</p>
+  </header>
+  <div class="chips" role="group" aria-label="Filter by industry"><button type="button" class="on" data-f="all">All</button><button type="button" data-f="software">Software &amp; AI</button><button type="button" data-f="brands">Brands</button><button type="button" data-f="apps">Apps</button><button type="button" data-f="fintech">Fintech</button><button type="button" data-f="realestate">Real estate</button></div>
+  <section class="grid" id="grid" aria-label="Films"></section>
+  <p class="note">Every product, brand and listing in these films is fictional, created by Qualitide to show the range. No client relationship is implied. Sample-film soundtracks: NoCopyrightSounds (NCS), with custom sound design on every film.</p>
+  <div class="cta"><h3>Want one like this?</h3><a href="index.html#contact">Get a free storyboard</a></div>
+</main>
+<dialog id="lb" aria-label="Film"><video id="lbv" controls playsinline></video><div class="bar"><span id="lbcap"></span><button type="button" id="lbx">Close</button></div></dialog>
+<script>
+(() => {
+  const FILMS = [
+    { id: 'huddleroom', ind: 'software', name: 'Huddle Room', kind: 'Remote work · launch film · 24 s', blurb: 'The app unfolds into a 3D room. On the drop, time freezes and the camera orbits the frozen moment.', look: 'Dark premium: near-black with champagne gold', sig: 'Screen becomes a room, bullet-time orbit, origami fold, 3D gold title', fx: 29 },
+    { id: 'deepdive', ind: 'software', name: 'Deepdive', kind: 'Analytics · launch film · 24 s', blurb: 'One unbroken shot that zooms from a chart into the exact click that broke checkout.', look: 'Biennale: parchment, indigo, solar yellow', sig: 'Infinite zoom through five nested worlds, X-ray explode, no cuts at all', fx: 24 },
+    { id: 'morrow', ind: 'brands', name: 'Morrow', kind: 'Skincare · product ad · 15 s', blurb: 'One drop of serum hits the screen and a liquid ripple bends the whole frame into a world of dew.', look: 'Dewlight: milk, clay, deep teal, apricot', sig: 'Liquid displacement ripple, 3D glass bottle, drop splat on the lens, sticker physics', fx: 30 },
+    { id: 'alderrise', ind: 'realestate', name: '14 Alder Rise', kind: 'Real estate · listing film · 20 s', blurb: 'A hand-drawn blueprint comes to life: one click on the front door spills light room by room until the drawing is a real home.', look: 'Editorial forest: cream, forest green, dusty pink', sig: 'Live line-art turning into 3D, floor plans that extrude, sun-path time-lapse', fx: 30 },
+    { id: 'stride', ind: 'apps', name: 'Stride', kind: 'Mobile app · store preview · 20 s', blurb: 'The phone screen becomes a portal: fly through the live map into the city streets, then back out through another phone.', look: 'Track red, ink and paper', sig: 'Portal through the screen, night city run, five-phone fan', fx: 28 },
+    { id: 'prismkit', ind: 'software', name: 'Prismkit', kind: 'Brand tool · launch film · 25 s', blurb: 'One design shatters into a kaleidoscope of every format, then streams back as 12,000 particles.', look: 'Blockframe: pastels, ink borders, hard shadows', sig: 'Letter tunnel, kaleidoscope, datamosh, page curl, magnetic particles', fx: 24 },
+    { id: 'halyard', ind: 'fintech', name: 'Halyard', kind: 'Fintech · product film · 20 s', blurb: "Spare change becomes serious money: the balance builds itself out of the app's own coins, bars and chips.", look: 'Night ledger: ink navy, chartreuse', sig: 'Letters built from UI pieces, receipt shred, growth curve that bends time', fx: 27 },
+    { id: 'tallyhub', ind: 'fintech', name: 'Tallyhub', kind: 'Fintech · launch film · 22 s', blurb: 'An invoice sent mid-call gets paid before the call ends. The grid floods cobalt on the drop.', look: 'Cobalt grid: cream paper, one electric blue', sig: 'Grid flood from the click, split-flap PAID board, rolling money wheels', fx: 40 },
+    { id: 'bloomday', ind: 'apps', name: 'Bloomday', kind: 'Creator app · launch film · 23 s', blurb: 'A chaotic week snaps into place with one drag. Candy colours, paper textures and confetti.', look: 'Capsule: cream canvas, candy pills', sig: 'Throw-and-snap of 13 blocks, torn paper, ink bloom, custom shader iris', fx: 29 },
+    { id: 'forgeline', ind: 'software', name: 'Forgeline', kind: 'Developer tool · launch film · 23 s', blurb: 'An AI reviewer tears through a pull request, fixes it and merges it. Dark, electric, fast.', look: 'Neon electric: navy, cyan, magenta', sig: 'Anamorphic flare on the drop, 24-shard shatter, 3D portal title', fx: 25 },
+    { id: 'reel', ind: 'studio', name: 'Qualitide', kind: 'Our studio film', wide: true, blurb: 'Our own film: what a Qualitide film feels like, from storyboard to final frame.' }
+  ];
+  const grid = document.getElementById('grid'), touch = matchMedia('(hover: none)').matches;
+  FILMS.forEach(f => {
+    const el = document.createElement('article'); el.className = 'film' + (f.wide ? ' wide' : ''); el.tabIndex = 0; el.setAttribute('role', 'button'); el.setAttribute('aria-label', `Play ${f.name}, ${f.kind}`);
+    el.innerHTML = `<div class="screen"><img src="web/${f.id}.jpg" alt="" loading="lazy"><video src="web/${f.id}.mp4" muted loop playsinline preload="none"></video><span class="play">▶ Watch with sound</span></div>
+      <div class="meta"><h2>${f.name}</h2><span class="kind">${f.kind}</span><p>${f.blurb}</p>${f.look ? `<dl class="spec"><div><dt>Look</dt><dd>${f.look}</dd></div><div><dt>Signature</dt><dd>${f.sig}</dd></div><div><dt>Effects</dt><dd>${f.fx}</dd></div></dl>` : ''}</div>`;
+    el.dataset.ind = f.ind;
+    const v = el.querySelector('video');
+    if (!touch) { el.addEventListener('mouseenter', () => { v.preload = 'auto'; v.play().catch(() => {}); }); el.addEventListener('mouseleave', () => { v.pause(); }); }
+    const open = () => { const d = document.getElementById('lb'), lv = document.getElementById('lbv'); lv.src = `web/${f.id}.mp4`; document.getElementById('lbcap').textContent = `${f.name} · ${f.kind}`; d.showModal(); lv.play().catch(() => {}); };
+    el.addEventListener('click', open); el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    grid.appendChild(el);
+  });
+  document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.chips button').forEach(x => x.classList.toggle('on', x === b)); const f = b.dataset.f;
+    grid.querySelectorAll('.film').forEach(el => { el.hidden = !(f === 'all' || el.dataset.ind === f || (f === 'all' && el.dataset.ind === 'studio')); }); }));
+  const d = document.getElementById('lb'), lv = document.getElementById('lbv'); const close = () => { lv.pause(); lv.removeAttribute('src'); lv.load(); d.close(); };
+  document.getElementById('lbx').addEventListener('click', close); d.addEventListener('click', e => { if (e.target === d) close(); }); d.addEventListener('cancel', () => { lv.pause(); });
+})();
+</script>
+</body>
+</html>
