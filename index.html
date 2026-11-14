@@ -19,7 +19,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E0162B'/%3E%3Ccircle cx='31' cy='30' r='15' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Cpath d='M38 37l11 11' stroke='%23fff' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Archivo:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <script data-goatcounter="https://qualitide.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -29,7 +29,7 @@
   color-scheme:dark;
   --bg:#0B0507; --bg2:#140A0E; --line:#2C1A20; --fg:#F7EEE3; --dim:#A08A8A;
   --red:#E0162B; --red-ink:#2A0409; --gold:#F2C14E;
-  --fd:"Big Shoulders Display","Oswald",Impact,sans-serif; --fb:"Hanken Grotesk","Helvetica Neue",Arial,system-ui,sans-serif; --fm:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --fd:"Big Shoulders Display","Oswald",Impact,sans-serif; --fb:"Archivo","Helvetica Neue",Arial,system-ui,sans-serif; --fm:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --ease:cubic-bezier(.22,1,.36,1);
   --gl:max(16px,env(safe-area-inset-left,0px)); --gr:max(16px,env(safe-area-inset-right,0px));
 }
@@ -450,7 +450,7 @@ footer nav{display:flex;gap:1.5rem}footer a{text-decoration:none}footer a:hover{
         </article>
         <article class="card featured" aria-labelledby="mm-h">
           <div class="card-top"><h3 id="mm-h">Monthly motion</h3><p class="card-sub">Fresh reels every month, made one after another, each in 48 hours.</p></div>
-          <div class="card-price"><span class="amt"><span id="mmPrice">$1,500</span><small>/ month</small></span><span class="unit" id="mmUnit">6 reels a month · most teams</span></div>
+          <div class="card-price"><span class="amt"><span id="mmPrice">$1,290</span><small>/ month</small></span><span class="unit" id="mmUnit">6 reels a month · most teams</span></div>
           <div class="card-slider">
             <input id="mmRange" type="range" min="4" max="24" step="2" value="6" aria-label="Reels per month">
             <div class="ticks" aria-hidden="true"><span>4</span><span>8</span><span>12</span><span>16</span><span>20</span><span>24</span></div>
@@ -511,7 +511,7 @@ footer nav{display:flex;gap:1.5rem}footer a{text-decoration:none}footer a:hover{
             <li><b>Full ownership:</b> use it anywhere, forever.</li>
           </ul></div></details>
         <details class="acc"><summary><span>Monthly motion, in detail</span><i aria-hidden="true"></i></summary>
-          <div class="acc-b"><p>4 to 24 reels a month: 4 for $900, 6 for $1,500, 8 for $2,000, then $200 for each extra reel. Each reel runs up to 15 seconds; two together make a 30-second film.</p>
+          <div class="acc-b"><p>4 to 24 reels a month: 4 for $900, 6 for $1,290, 8 for $1,640, then $190 for each extra reel, so every reel costs less the more you make. Each reel runs up to 20 seconds; a 30-second film counts as two.</p>
           <ul class="pts">
             <li><b>Every launch, covered.</b> Launch films, feature drops, product ads, social cuts.</li>
             <li><b>A storyboard for each.</b> You approve every reel before it's animated.</li>
@@ -654,7 +654,7 @@ footer nav{display:flex;gap:1.5rem}footer a{text-decoration:none}footer a:hover{
 (() => {
   /* prices: launch films by length; monthly motion: 4 = $900, 6 = $1,500, 8 = $2,000, then $200 per extra reel */
   const LF = [{ s: 15, name: '15 s film', price: 250, eta: '48 hours' }, { s: 30, name: '30 s film', price: 600, eta: '48 hours' }, { s: 60, name: '60 s explainer', price: 900, eta: '72 hours' }];
-  const mmPrice = n => n <= 4 ? 900 : n <= 6 ? 1500 : 2000 + (n - 8) * 200;
+  const mmPrice = n => n <= 4 ? 900 : n <= 6 ? 1290 : 1640 + (n - 8) * 190;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, hasGsap = !!window.gsap, motion = !reduce && hasGsap;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches, root = document.documentElement, pad = n => String(n).padStart(2, '0');
   root.classList.add(motion ? 'has-motion' : 'no-motion');
@@ -768,7 +768,7 @@ footer nav{display:flex;gap:1.5rem}footer a{text-decoration:none}footer a:hover{
   const lfUpd = () => { const o = LF[+lfR.value]; tween($('#lfPrice'), lfShown, o.price); $('#lfUnit').textContent = `${o.name} · delivered in ${o.eta}`;
     $('#lfBtn').textContent = $('#lfBtn2').textContent = `Start a ${o.s} s film`; lfR.style.setProperty('--p', (+lfR.value / 2 * 100) + '%'); lfR.setAttribute('aria-valuetext', `${o.name}, ${fmt(o.price)}`); };
   lfR.addEventListener('input', lfUpd); lfUpd();
-  const mmR = $('#mmRange'), mmShown = { v: 1500 };
+  const mmR = $('#mmRange'), mmShown = { v: 1290 };
   const mmUpd = () => { const n = +mmR.value, p = mmPrice(n); tween($('#mmPrice'), mmShown, p);
     $('#mmUnit').textContent = `${n} reels a month · ${n === 6 ? 'most teams' : fmt(p / n) + ' a reel'}`; $('#mmBtn').textContent = $('#mmBtn2').textContent = `Start with ${n} reels`;
     mmR.style.setProperty('--p', ((n - 4) / 20 * 100) + '%'); mmR.setAttribute('aria-valuetext', `${n} reels, ${fmt(p)} per month`); };

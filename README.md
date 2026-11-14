@@ -10,6 +10,6 @@ The Qualitide website. Static files only, no build step.
 
 Hosting: build command empty, output / publish directory "/".
 The free storyboard form posts to the intake Apps Script (INTAKE_URL in index.html). Visitor counts: GoatCounter (cookie-free), code `qualitide`.
-Prices must match `studio/PRICES.md` in qualitide-intake (monthly: 4 = $900, 6 = $1,500, 8 = $2,000, +$200 a reel up to 24).
+Prices must match `studio/PRICES.md` in qualitide-intake (monthly: 4 = $900, 6 = $1,290, 8 = $1,640, +$190 a reel up to 24; reels up to 20 s).
 
 Unzipping: the site comes in 5 zips. Unzip all of them into the same folder (say "yes" to merging the web folder); you then have index.html plus web/ with 11 films and 11 posters.
